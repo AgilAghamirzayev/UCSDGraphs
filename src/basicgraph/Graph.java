@@ -1,12 +1,8 @@
 package basicgraph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import util.GraphLoader;
 
@@ -121,8 +117,12 @@ public abstract class Graph {
 	 * @return The degree sequence of this graph.
 	 */
 	public List<Integer> degreeSequence() {
-		// XXX: Implement in part 1 of week 2
-		return null;
+
+		return IntStream.range(0,numVertices).mapToObj(numOfVertices ->
+				getNeighbors(numOfVertices).size() + getInNeighbors(numOfVertices).size())
+				.sorted(Comparator.reverseOrder())
+				.collect(Collectors.toList());
+
 	}
 	
 	/**
@@ -164,7 +164,7 @@ public abstract class Graph {
 	/**
 	 * Test whether some vertex in the graph is labeled 
 	 * with a given index.
-	 * @param The index being checked
+	 * @param v index being checked
 	 * @return True if there's a vertex in the graph with this index; false otherwise.
 	 */
 	public boolean hasVertex(int v)
@@ -175,7 +175,7 @@ public abstract class Graph {
 	/**
 	 * Test whether some vertex in the graph is labeled 
 	 * with a given String label
-	 * @param The String label being checked
+	 * @param s  String label being checked
 	 * @return True if there's a vertex in the graph with this label; false otherwise.
 	 */
 	public boolean hasVertex(String s)
@@ -185,8 +185,8 @@ public abstract class Graph {
 	
 	/**
 	 * Add label to an unlabeled vertex in the graph.
-	 * @param The index of the vertex to be labeled.
-	 * @param The label to be assigned to this vertex.
+	 * @param v index of the vertex to be labeled.
+	 * @param s label to be assigned to this vertex.
 	 */
 	public void addLabel(int v, String s) {
 		if (v < getNumVertices() && !vertexLabels.containsKey(v)) 
@@ -200,7 +200,7 @@ public abstract class Graph {
 	
 	/**
 	 * Report label of vertex with given index
-	 * @param The integer index of the vertex
+	 * @param v integer index of the vertex
 	 * @return The String label of this vertex 
 	 */
 	public String getLabel(int v) {
@@ -213,7 +213,7 @@ public abstract class Graph {
 	/**
 	 * Report index of vertex with given label.
 	 * (Assume distinct labels for vertices.)
-	 * @param The String label of the vertex
+	 * @param s String label of the vertex
 	 * @return The integer index of this vertex 
 	 */
 	public int getIndex(String s) {
@@ -264,6 +264,6 @@ public abstract class Graph {
 		System.out.println("Goal: implement method using two approaches.");
 
 
-		
+
 	}
 }

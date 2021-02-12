@@ -29,7 +29,7 @@ public class GraphGrader {
             res += i + "-";
         }
         // Last character will be a '-'
-        return res.substring(0, res.length() - 1);
+        return res.substring(0, res.length());
     }
 
     /**
