@@ -29,7 +29,6 @@ public class Maze {
 	 * Create a new empty maze with default size 10x10
 	 */
 	public Maze() {
-
 		cells = new MazeNode[DEFAULT_SIZE][DEFAULT_SIZE];
 		this.width = DEFAULT_SIZE;
 		this.height = DEFAULT_SIZE;

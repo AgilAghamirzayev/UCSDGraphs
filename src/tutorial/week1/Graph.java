@@ -1,4 +1,4 @@
-package tutorial;
+package tutorial.week1;
 
 import java.util.List;
 
